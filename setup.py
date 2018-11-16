@@ -24,6 +24,15 @@ if not all(VALUES.values()):
 
 
 version = VALUES['__version__']
+description = VALUES['__description__']
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+try:
+    with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
+        long_description = '\n' + f.read()
+except FileNotFoundError:
+    long_description = description
 
 
 class PyTest(TestCommand):
@@ -54,7 +63,9 @@ def read_requirements(file_name):
 setup(
     name=VALUES['__title__'],
     version=version,
-    description=VALUES['__description__'],
+    description=description,
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     url='https://github.com/santiagobasulto/python-hacker-news',
     author='Santiago Basulto',
     author_email='santiago.basulto@gmail.com',
