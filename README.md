@@ -1,7 +1,5 @@
 # HackerNews / Algolia Python Library
 
-> **This is a work in progress**
-
 This is a simple library to interface with [HN Search API](https://hn.algolia.com/api) (provided by Algolia).
 
 ### Install instructions
