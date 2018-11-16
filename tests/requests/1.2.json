@@ -1,0 +1,98 @@
+{
+  "hits": [
+    {
+      "created_at": "2018-11-15T21:10:18.000Z",
+      "title": null,
+      "url": null,
+      "author": "choot",
+      "points": null,
+      "story_text": null,
+      "comment_text": "It&#x27;s sooo weird here on HN, even for sharing incident, victim gets downvoted.",
+      "num_comments": null,
+      "story_id": 18460087,
+      "story_title": "Germany plans 3B in AI investments",
+      "story_url": "https://www.reuters.com/article/us-germany-intelligence/german-government-has-set-aside-around-3-billion-euros-for-artificial-intelligence-report-idUSKCN1NI1AP",
+      "parent_id": 18462038,
+      "created_at_i": 1542316218,
+      "_tags": [
+        "comment",
+        "author_choot",
+        "story_18460087"
+      ],
+      "objectID": "18463369",
+      "_highlightResult": {
+        "author": {
+          "value": "choot",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "comment_text": {
+          "value": "It's sooo weird here on HN, even for sharing incident, victim gets downvoted.",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_title": {
+          "value": "Germany plans 3B in AI investments",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_url": {
+          "value": "https://www.reuters.com/article/us-germany-intelligence/german-government-has-set-aside-around-3-billion-euros-for-artificial-intelligence-report-idUSKCN1NI1AP",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2018-11-15T21:10:15.000Z",
+      "title": null,
+      "url": null,
+      "author": "shoo",
+      "points": null,
+      "story_text": null,
+      "comment_text": "I&#x27;d argue that mentioning that labour becomes more expensive after tax cuts, while glossing over that the same amplification happens to other non labour expenses and other revenues, is a rhetorical trick that doesn&#x27;t really help a clear discussion of reality.",
+      "num_comments": null,
+      "story_id": 18457200,
+      "story_title": "Companies struggling to fill jobs 'should try paying more,' Fed's Kashkari says",
+      "story_url": "https://www.cnbc.com/2018/11/13/firms-trying-to-fill-jobs-should-try-paying-more-feds-kashkari-says.html",
+      "parent_id": 18459141,
+      "created_at_i": 1542316215,
+      "_tags": [
+        "comment",
+        "author_shoo",
+        "story_18457200"
+      ],
+      "objectID": "18463367",
+      "_highlightResult": {
+        "author": {
+          "value": "shoo",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "comment_text": {
+          "value": "I'd argue that mentioning that labour becomes more expensive after tax cuts, while glossing over that the same amplification happens to other non labour expenses and other revenues, is a rhetorical trick that doesn't really help a clear discussion of reality.",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_title": {
+          "value": "Companies struggling to fill jobs 'should try paying more,' Fed's Kashkari says",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_url": {
+          "value": "https://www.cnbc.com/2018/11/13/firms-trying-to-fill-jobs-should-try-paying-more-feds-kashkari-says.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    }
+  ],
+  "nbHits": 17052189,
+  "page": 0,
+  "nbPages": 500,
+  "hitsPerPage": 2,
+  "processingTimeMS": 3,
+  "exhaustiveNbHits": false,
+  "query": "",
+  "params": "advancedSyntax=true&analytics=false&hitsPerPage=2&numericFilters=created_at_i%3C1542316220"
+}

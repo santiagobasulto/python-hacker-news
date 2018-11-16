@@ -1,0 +1,98 @@
+{
+  "hits": [
+    {
+      "created_at": "2018-11-15T21:10:34.000Z",
+      "title": null,
+      "url": null,
+      "author": "komali2",
+      "points": null,
+      "story_text": null,
+      "comment_text": "Your example perfectly illustrates why I prefer the California method. On my morning walk or bicycle ride to the train station, I have to go through easily 30 lighted intersections. Having to analyze traffic for a gap 60 times a day sounds exhausting. I much prefer just zoning out at the red light, listening to a podcast or whatever, then doing one quick left&#x2F;right check when my signal comes on.<p>I don&#x27;t have to analyze anything, I don&#x27;t have to negotiate with a driver, don&#x27;t have to guess speed, I just go when it&#x27;s my time to go.",
+      "num_comments": null,
+      "story_id": 18445714,
+      "story_title": "Waymo CEO Says Alphabet Unit Plans to Launch Driverless Car Service",
+      "story_url": "https://www.marketwatch.com/story/waymo-ceo-says-driverless-car-service-coming-soon-2018-11-13",
+      "parent_id": 18453018,
+      "created_at_i": 1542316234,
+      "_tags": [
+        "comment",
+        "author_komali2",
+        "story_18445714"
+      ],
+      "objectID": "18463371",
+      "_highlightResult": {
+        "author": {
+          "value": "komali2",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "comment_text": {
+          "value": "Your example perfectly illustrates why I prefer the California method. On my morning walk or bicycle ride to the train station, I have to go through easily 30 lighted intersections. Having to analyze traffic for a gap 60 times a day sounds exhausting. I much prefer just zoning out at the red light, listening to a podcast or whatever, then doing one quick left/right check when my signal comes on.<p>I don't have to analyze anything, I don't have to negotiate with a driver, don't have to guess speed, I just go when it's my time to go.",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_title": {
+          "value": "Waymo CEO Says Alphabet Unit Plans to Launch Driverless Car Service",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_url": {
+          "value": "https://www.marketwatch.com/story/waymo-ceo-says-driverless-car-service-coming-soon-2018-11-13",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "created_at": "2018-11-15T21:10:20.000Z",
+      "title": null,
+      "url": null,
+      "author": "jfk13",
+      "points": null,
+      "story_text": null,
+      "comment_text": "Not sure I&#x27;d want to try moonshine from Monsanto...",
+      "num_comments": null,
+      "story_id": 18462671,
+      "story_title": "\u2018I Don\u2019t Really Want to Work for Facebook.\u2019 So Say Computer Science Students",
+      "story_url": "https://www.nytimes.com/2018/11/15/technology/jobs-facebook-computer-science-students.html",
+      "parent_id": 18463255,
+      "created_at_i": 1542316220,
+      "_tags": [
+        "comment",
+        "author_jfk13",
+        "story_18462671"
+      ],
+      "objectID": "18463370",
+      "_highlightResult": {
+        "author": {
+          "value": "jfk13",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "comment_text": {
+          "value": "Not sure I'd want to try moonshine from Monsanto...",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_title": {
+          "value": "\u2018I Don\u2019t Really Want to Work for Facebook.\u2019 So Say Computer Science Students",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "story_url": {
+          "value": "https://www.nytimes.com/2018/11/15/technology/jobs-facebook-computer-science-students.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    }
+  ],
+  "nbHits": 17321865,
+  "page": 0,
+  "nbPages": 500,
+  "hitsPerPage": 2,
+  "processingTimeMS": 1,
+  "exhaustiveNbHits": true,
+  "query": "",
+  "params": "advancedSyntax=true&analytics=false&hitsPerPage=2"
+}
