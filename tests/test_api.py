@@ -111,14 +111,14 @@ def test_search_by_date_without_query_default_params():
 
 
 @responses.activate
-def test_search_by_date_with_query_created_parameter():
+def test_search_by_date_without_query_created_parameter():
     with (REQUESTS_PATH / '1.1.json').open() as fp:
         responses.add(
             responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=2&numericFilters=created_at_i>1514764800',
             json=json.loads(fp.read()), status=200)
     with (REQUESTS_PATH / '1.2.json').open() as fp:
         responses.add(
-            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=2&numericFilters=created_at_i<1542316220',
+            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=2&numericFilters=created_at_i>1514764800,created_at_i<1542316220',
             json=json.loads(fp.read()), status=200)
 
     res = search_by_date(hits_per_page=2, created_at__gt='2018')
@@ -142,7 +142,7 @@ def test_search_by_date_with_query_created_and_points():
             json=json.loads(fp.read()), status=200)
     with (REQUESTS_PATH / '1.2.json').open() as fp:
         responses.add(
-            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=2&numericFilters=created_at_i<1542316220,points=50',
+            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=2&numericFilters=created_at_i<1542316220,created_at_i<1542316220,points=50',
             json=json.loads(fp.read()), status=200)
 
     res = search_by_date(hits_per_page=2, created_at__gt='2018', points=50)

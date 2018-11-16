@@ -44,6 +44,105 @@ def test_filter_equality():
         10, models.LESS_OPERATOR)
 
 
+def test_equals_filter_mutually_exclusive():
+    filter = CreatedAtFilter(datetime(2018, 1, 1), models.EQUALS_OPERATOR)
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.EQUALS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_EQUALS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_EQUALS_OPERATOR)
+    ) is True
+
+
+def test_less_filter_mutually_exclusive():
+    filter = CreatedAtFilter(datetime(2018, 1, 1), models.LESS_OPERATOR)
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.EQUALS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_EQUALS_OPERATOR)
+    ) is True
+
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_OPERATOR)
+    ) is False
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_EQUALS_OPERATOR)
+    ) is False
+
+
+def test_less_equals_filter_mutually_exclusive():
+    filter = CreatedAtFilter(datetime(2018, 1, 1), models.LESS_EQUALS_OPERATOR)
+
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.EQUALS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_EQUALS_OPERATOR)
+    ) is True
+
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_OPERATOR)
+    ) is False
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_EQUALS_OPERATOR)
+    ) is False
+
+def test_greater_filter_mutually_exclusive():
+    filter = CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_OPERATOR)
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.EQUALS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_EQUALS_OPERATOR)
+    ) is True
+
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_OPERATOR)
+    ) is False
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_EQUALS_OPERATOR)
+    ) is False
+
+
+def test_greater_equals_filter_mutually_exclusive():
+    filter = CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_OPERATOR)
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.EQUALS_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_OPERATOR)
+    ) is True
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.GREATER_EQUALS_OPERATOR)
+    ) is True
+
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_OPERATOR)
+    ) is False
+    assert filter.mutually_exclusive(
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_EQUALS_OPERATOR)
+    ) is False
+
+
 def test_filters_hashable():
     filter_set = set([
         NumCommentsFilter(10, models.EQUALS_OPERATOR),
@@ -246,21 +345,35 @@ def test_parse_filters():
     ]
 
 
-def test_parse_filters_replace():
+def test_parse_filters_replace_with_replacement():
     filters = FilterParser([
-        CreatedAtFilter(datetime(2017, 1, 1), models.LESS_OPERATOR),
+        CreatedAtFilter(datetime(2017, 1, 1), models.GREATER_EQUALS_OPERATOR),
+        CreatedAtFilter(datetime(2018, 11, 25), models.LESS_OPERATOR),
         PointsFilter(10, models.EQUALS_OPERATOR),
         NumCommentsFilter(5, models.GREATER_EQUALS_OPERATOR)
     ])
 
-    assert set(filters.replace(created_at='2018')._filters) == set([
-        CreatedAtFilter(datetime(2018, 1, 1), models.EQUALS_OPERATOR),
+    new_filters = filters.replace(created_at__lt='2018-11-01')
+    assert set(new_filters._filters) == set([
+        CreatedAtFilter(datetime(2017, 1, 1), models.GREATER_EQUALS_OPERATOR),
+        CreatedAtFilter(datetime(2018, 11, 1), models.LESS_OPERATOR),
         PointsFilter(10, models.EQUALS_OPERATOR),
         NumCommentsFilter(5, models.GREATER_EQUALS_OPERATOR)
     ])
-    assert set(filters.replace(points__gte='5')._filters) == set([
-        CreatedAtFilter(datetime(2017, 1, 1), models.LESS_OPERATOR),
-        PointsFilter(5, models.GREATER_EQUALS_OPERATOR),
+
+
+def test_parse_filters_replace_with_new_one():
+    filters = FilterParser([
+        CreatedAtFilter(datetime(2017, 1, 1), models.GREATER_EQUALS_OPERATOR),
+        PointsFilter(10, models.EQUALS_OPERATOR),
+        NumCommentsFilter(5, models.GREATER_EQUALS_OPERATOR)
+    ])
+
+    new_filters = filters.replace(created_at__lt='2018-11-01')
+    assert set(new_filters._filters) == set([
+        CreatedAtFilter(datetime(2017, 1, 1), models.GREATER_EQUALS_OPERATOR),
+        CreatedAtFilter(datetime(2018, 11, 1), models.LESS_OPERATOR),
+        PointsFilter(10, models.EQUALS_OPERATOR),
         NumCommentsFilter(5, models.GREATER_EQUALS_OPERATOR)
     ])
 

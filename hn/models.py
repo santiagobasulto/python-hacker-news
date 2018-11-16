@@ -90,6 +90,22 @@ class Filter(Comparable):
     def __hash__(self):
         return hash((self.__class__, self.value, self.operator))
 
+    def mutually_exclusive(self, other_filter):
+        if self.__class__ != other_filter.__class__:
+            return False
+        if self.operator == EQUALS_OPERATOR or other_filter.operator == EQUALS_OPERATOR:
+            return True
+
+        less_operators_group = {LESS_OPERATOR, LESS_EQUALS_OPERATOR}
+        greater_operators_group = {GREATER_OPERATOR, GREATER_EQUALS_OPERATOR}
+
+
+        for group in (less_operators_group, greater_operators_group):
+            same_group = self.operator in group and other_filter.operator in group
+            if same_group:
+                return True
+        return False
+
     @classmethod
     def parse_value(cls, value):
         return value
@@ -168,15 +184,26 @@ class FilterParser:
             raise ValueError('Repeated filters found')
         self._filters = filters
 
-    def replace(self, **new_filters):
-        _new_filters = self.parse(**new_filters)._filters.copy()
-        _new_classes = [f.__class__ for f in _new_filters]
+    def replace(self, **new_filter):
+        if len(new_filter) != 1:
+            raise ValueError("Can replace only 1 filter at a time")
 
+        filer_name, value = next(iter(new_filter.items()))
+        new_filter = self._parse_from_list(filer_name, value)
+
+        new_filters = []
+
+        replaced = False
         for filter in self._filters:
-            if filter.__class__ not in _new_classes:
-                _new_filters.append(filter)
+            if filter.mutually_exclusive(new_filter):
+                new_filters.append(new_filter)
+                replaced = True
+            else:
+                new_filters.append(filter)
+        if not replaced:
+            new_filters.append(new_filter)
 
-        return FilterParser(_new_filters)
+        return FilterParser(new_filters)
 
     @classmethod
     def _parse_from_list(cls, filter_name, value):
