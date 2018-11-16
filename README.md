@@ -26,7 +26,7 @@ search_by_date(q='lisp', author='pg', tags=PostType('story'), created_at__lt='20
 # Search stories *or* comments (see tags below)
 search_by_date(
     q='lisp', author='pg',
-    tags=(PostType('story') || PostType('comment')),
+    tags=(PostType('story') | PostType('comment')),
     created_at__lt='2018-01-01')
 ```
 
