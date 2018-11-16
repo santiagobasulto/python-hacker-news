@@ -43,7 +43,7 @@ Tags are part of HN Search API provided by Algolia. You can read more in [their 
 
 ```python
 # Stories by `pg` or comments by `patio11`
-tags = (PostType('story') & Author('pg')) || (PostType('comment') & Author('patio11'))
+tags = (PostType('story') & Author('pg')) | (PostType('comment') & Author('patio11'))
 
 # All the comments in the story `6902129`
 tags = PostType('story') & StoryID('6902129')
