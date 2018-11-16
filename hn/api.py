@@ -32,6 +32,7 @@ def search_by_date(q=None, author=None, tags=None, hits_per_page=1000,
         parser = FilterParser.parse(**filters)
         params['numericFilters'] = str(parser)
 
+    # assert False, params
     while True:
         resp = requests.get(endpoints.SEARCH_BY_DATE, params=params)
         resp.raise_for_status()

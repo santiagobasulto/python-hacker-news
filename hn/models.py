@@ -164,8 +164,7 @@ class FilterParser:
     ]
 
     def __init__(self, filters):
-        classes = [f.__class__ for f in filters]
-        if len(classes) != len(set(classes)):
+        if len(filters) != len(set(filters)):
             raise ValueError('Repeated filters found')
         self._filters = filters
 

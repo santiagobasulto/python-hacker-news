@@ -8,82 +8,6 @@ from hn.models import (
     PointsFilter, NumCommentsFilter)
 
 
-def test_equality_of_boolean_operators():
-    assert And(PostType('story'), PostType('comment')) == And(PostType('story'), PostType('comment'))
-    assert And(PostType('story'), Author('pg')) == And(PostType('story'), Author('pg'))
-
-    assert Or(PostType('story'), PostType('comment')) == Or(PostType('story'), PostType('comment'))
-    assert Or(PostType('story'), Author('pg')) == Or(PostType('story'), Author('pg'))
-
-    assert And(PostType('story'), PostType('pg')) != And(PostType('story'), Author('pg'))
-    assert Or(PostType('story'), PostType('pg')) != Or(PostType('story'), Author('pg'))
-
-    assert And(PostType('story'), PostType('show_hn')) != And(PostType('story'), PostType('comment'))
-    assert Or(PostType('story'), PostType('show_hn')) != Or(PostType('story'), PostType('comment'))
-
-
-def test_equality_of_tags():
-    assert PostType('story') == PostType('story')
-    assert Author('pg') == Author('pg')
-    assert PostType('story') != PostType('comment')
-
-
-def test_operators_on_tags():
-    assert (PostType('story') & Author('pg')) == And(PostType('story'), Author('pg'))
-    assert (PostType('story') | PostType('comment')) == Or(PostType('story'), PostType('comment'))
-
-
-def test_operators_combined():
-    assert And(PostType('story'), Author('pg')) & StoryID(281) == And(
-        And(PostType('story'), Author('pg')),
-        StoryID(281)
-    )
-    assert Or(PostType('story'), PostType('comment')) & Author('pg')== And(
-        Or(PostType('story'), PostType('comment')),
-        Author('pg')
-    )
-
-
-def test_stringify_tags():
-    assert str(PostType('story')) == 'story'
-    assert str(Author('pg')) == 'author_pg'
-    assert str(StoryID(1832)) == 'story_1832'
-
-
-def test_stringify_simple_and():
-    assert str(And(PostType('story'), Author('pg'))) == 'story,author_pg'
-    assert str(And(PostType('comment'), StoryId(819))) == 'comment,story_819'
-
-def test_stringify_simple_and():
-    assert str(Or(PostType('story'), PostType('comment'))) == '(story,comment)'
-    assert str(Or(PostType('comment'), Author('pg'))) == '(comment,author_pg)'
-    assert str(Or(StoryID('182'), StoryID('983'))) == '(story_182,story_983)'
-
-
-def test_stringify_complex_booleans():
-    comp1 = And(Author('pg'), Or(PostType('story'), PostType('poll')))
-    comp2 = Or(
-        And(
-            PostType('comment'), Author('pg')
-        ),
-        And(
-            PostType('poll'), Author('dhouston')
-        )
-    )
-    comp1 = And(Author('pg'), Or(PostType('story'), PostType('poll')))
-
-    assert str(comp1) == 'author_pg,(story,poll)'
-    # assert str(comp2) == '()'
-
-
-def test_stingify_operated_tags():
-    cond1 = PostType('story') & Author('pg')
-    assert str(cond1) == 'story,author_pg'
-
-    cond2 = (PostType('story') | PostType('comment')) & Author('pg')
-    assert str(cond2) == '(story,comment),author_pg'
-
-
 # Filters:
 def test_filter_equality():
     assert CreatedAtFilter(
@@ -274,11 +198,17 @@ def test_num_comments_str():
 
 
 def test_filter_parser_duplicated_filters():
+    FilterParser([
+        CreatedAtFilter(datetime(2018, 1, 1), models.LESS_OPERATOR),
+        PointsFilter(10, models.EQUALS_OPERATOR),
+        PointsFilter(10, models.LESS_OPERATOR)
+    ])
     with pytest.raises(ValueError):
         FilterParser([
             CreatedAtFilter(datetime(2018, 1, 1), models.LESS_OPERATOR),
             PointsFilter(10, models.EQUALS_OPERATOR),
-            PointsFilter(10, models.LESS_OPERATOR)
+            PointsFilter(10, models.LESS_OPERATOR),
+            PointsFilter(10, models.EQUALS_OPERATOR),
         ])
 
 
@@ -300,6 +230,21 @@ def test_parse_filters():
         PointsFilter(15, models.GREATER_EQUALS_OPERATOR),
         NumCommentsFilter(100, models.LESS_OPERATOR)
     ]
+
+    filters = FilterParser.parse(
+        created_at__lte='2018-09', created_at__gt='2017-09',
+        points__gte='15', points__lt=100,
+        num_comments__lt='100', num_comments__gte='35')
+
+    assert filters._filters == [
+        CreatedAtFilter(datetime(2018, 9, 1), models.LESS_EQUALS_OPERATOR),
+        CreatedAtFilter(datetime(2017, 9, 1), models.GREATER_OPERATOR),
+        PointsFilter(15, models.GREATER_EQUALS_OPERATOR),
+        PointsFilter(100, models.LESS_OPERATOR),
+        NumCommentsFilter(100, models.LESS_OPERATOR),
+        NumCommentsFilter(35, models.GREATER_EQUALS_OPERATOR),
+    ]
+
 
 def test_parse_filters_replace():
     filters = FilterParser([

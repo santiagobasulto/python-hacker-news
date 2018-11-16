@@ -13,11 +13,11 @@ REQUESTS_PATH = BASE_PATH / 'requests'
 def test_search_by_date_with_query_default_params():
     with (REQUESTS_PATH / '1.1.json').open() as fp:
         responses.add(
-            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?q=rmotr&hitsPerPage=2',
+            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?query=rmotr&hitsPerPage=2',
             json=json.loads(fp.read()), status=200)
     with (REQUESTS_PATH / '1.2.json').open() as fp:
         responses.add(
-            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?q=rmotr&hitsPerPage=2&numericFilters=created_at_i<1542316220',
+            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?query=rmotr&hitsPerPage=2&numericFilters=created_at_i<1542316220',
             json=json.loads(fp.read()), status=200)
 
     res = search_by_date('rmotr', hits_per_page=2)
@@ -38,11 +38,11 @@ def test_search_by_date_with_query_default_params():
 def test_search_by_date_with_query_and_author_post_types():
     with (REQUESTS_PATH / '1.1.json').open() as fp:
         responses.add(
-            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?q=rmotr&hitsPerPage=2&tags=(story,comments),author_pg',
+            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?query=rmotr&hitsPerPage=2&tags=(story,comments),author_pg',
             json=json.loads(fp.read()), status=200)
     with (REQUESTS_PATH / '1.2.json').open() as fp:
         responses.add(
-            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?q=rmotr&hitsPerPage=2&tags=(story,comments),author_pg&numericFilters=created_at_i<1542316220',
+            responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?query=rmotr&hitsPerPage=2&tags=(story,comments),author_pg&numericFilters=created_at_i<1542316220',
             json=json.loads(fp.read()), status=200)
 
     res = search_by_date(
