@@ -10,6 +10,8 @@ $ pip install python-hn
 
 ### Usage
 
+**Check out [Interactive Docs](https://notebooks.rmotr.com/santiagobasulto/python-hn-library-interactive-docs-d49b8026) to try the library without installing it.**
+
 ##### Search by date
 
 ```python
@@ -40,9 +42,6 @@ Parameters received by `search_by_date`:
 Tags are part of HN Search API provided by Algolia. You can read more in [their docs](https://hn.algolia.com/api). They can form complex queries, for example:
 
 ```python
-# Stories by `pg` or comments by `patio11`
-tags = (PostType('story') & Author('pg')) | (PostType('comment') & Author('patio11'))
-
 # All the comments in the story `6902129`
 tags = PostType('comment') & StoryID('6902129')
 ```
@@ -89,3 +88,9 @@ search_by_date(tags=PostType('story'), num_comments__gt=100)
 ##### Search
 
 _[TODO]_
+
+### Roadmap
+
+* V0.0.3: Post type aliases
+* V0.0.2 **CURRENT**: Functioning API
+* V0.0.1: Initial Version
