@@ -44,7 +44,7 @@ Tags are part of HN Search API provided by Algolia. You can read more in [their 
 tags = (PostType('story') & Author('pg')) | (PostType('comment') & Author('patio11'))
 
 # All the comments in the story `6902129`
-tags = PostType('story') & StoryID('6902129')
+tags = PostType('comment') & StoryID('6902129')
 ```
 
 The available tags are:
