@@ -3,6 +3,7 @@ from calendar import timegm
 from datetime import datetime
 
 from hn import models
+from hn.tags import Story, Comment, AskHN, ShowHN, Poll
 from hn.models import (
     PostType, Author, StoryID, And, Or, FilterParser, CreatedAtFilter,
     PointsFilter, NumCommentsFilter)
@@ -26,6 +27,13 @@ def test_equality_of_tags():
     assert PostType('story') == PostType('story')
     assert Author('pg') == Author('pg')
     assert PostType('story') != PostType('comment')
+
+def test_equality_of_aliases():
+    assert Story == PostType('story')
+    assert Comment == PostType('comment')
+    assert Poll == PostType('poll')
+    assert AskHN == PostType('ask_hn')
+    assert ShowHN == PostType('show_hn')
 
 
 def test_operators_on_tags():
