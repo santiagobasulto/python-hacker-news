@@ -26,6 +26,10 @@ def test_equality_of_boolean_operators():
 def test_equality_of_tags():
     assert PostType('story') == PostType('story')
     assert Author('pg') == Author('pg')
+    assert StoryID('18302') == StoryID('18302')
+    assert StoryID('18302') == StoryID(18302)
+
+    assert StoryID('18302') != StoryID('18301')
     assert PostType('story') != PostType('comment')
 
 def test_equality_of_aliases():
@@ -38,6 +42,7 @@ def test_equality_of_aliases():
 
 def test_operators_on_tags():
     assert (PostType('story') & Author('pg')) == And(PostType('story'), Author('pg'))
+    assert (PostType('story') | PostType('comment')) == Or(PostType('story'), PostType('comment'))
     assert (PostType('story') | PostType('comment')) == Or(PostType('story'), PostType('comment'))
 
 
@@ -90,3 +95,12 @@ def test_stingify_operated_tags():
 
     cond2 = (PostType('story') | PostType('comment')) & Author('pg')
     assert str(cond2) == '(story,comment),author_pg'
+
+    cond3 = (PostType('story') | PostType('comment') | PostType('ask_hn'))
+    assert str(cond3) == '(story,comment,ask_hn)'
+
+    cond4 = (PostType('story') | PostType('comment') | PostType('ask_hn')) & Author('pg')
+    assert str(cond4) == '(story,comment,ask_hn),author_pg'
+
+    cond5 = Author('pg') & (PostType('story') | PostType('comment') | PostType('ask_hn'))
+    assert str(cond5) == 'author_pg,(story,comment,ask_hn)'

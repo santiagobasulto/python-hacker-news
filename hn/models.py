@@ -28,6 +28,10 @@ class BaseBooleanOperator(Comparable):
     def _get_value(self):
         return (self.left, self.right)
 
+    def __repr__(self):
+        return "{clazz}({left!r}, {right!r})".format(
+            clazz=self.__class__.__name__, left=self.left, right=self.right)
+
 
 class And(BaseBooleanOperator, BooleanOperable):
     def __str__(self):
@@ -35,7 +39,10 @@ class And(BaseBooleanOperator, BooleanOperable):
 
 class Or(BaseBooleanOperator, BooleanOperable):
     def __str__(self):
-        return "({},{})".format(self.left, self.right)
+        left = str(self.left)
+        if self.left.__class__ == Or:
+            left = str(left).rstrip(')').lstrip('(')
+        return "({},{})".format(left, self.right)
 
 
 class Tag(BooleanOperable, Comparable):
@@ -44,6 +51,9 @@ class Tag(BooleanOperable, Comparable):
 
     def _get_value(self):
         return self.value
+
+    def __repr__(self):
+        return "{}({})".format(self.__class__.__name__, self.value)
 
     def __str__(self):
         if getattr(self, 'PREFIX', None):
@@ -62,6 +72,9 @@ class Author(Tag):
 
 class StoryID(Tag):
     PREFIX = 'story'
+
+    def _get_value(self):
+        return str(self.value)
 
 
 FilterOperator = namedtuple('FilterOperator', ['name', 'operator'])
