@@ -12,37 +12,22 @@ $ pip install python-hn
 
 **Check out [Interactive Docs](https://notebooks.rmotr.com/santiagobasulto/python-hn-library-interactive-docs-d49b8026) to try the library without installing it.**
 
-##### Search by date
-
 ```python
-from hn import search_by_date, PostType
+from hn import search_by_date
 
-# Search everything (stories, comments, etc)
-search_by_date(q='lisp', author='pg', created_at__lt='2018-01-01')
+# Search everything (stories, comments, etc) containing the keyword 'python'
+search_by_date('python')
+
+
+# Search everything (stories, comments, etc) from author 'pg' and keyword 'lisp'
+search_by_date('lisp', author='pg', created_at__lt='2018-01-01')
 
 # Search only stories
-search_by_date(q='lisp', author='pg', stories=True, created_at__lt='2018-01-01')
+search_by_date('lisp', author='pg', stories=True, created_at__lt='2018-01-01')
 
 # Search stories *or* comments
 search_by_date(q='lisp', author='pg', stories=True, comments=True, created_at__lt='2018-01-01')
-
-# Search stories *or* comments (using tags, see below)
-search_by_date(
-    q='lisp', author='pg',
-    tags=(PostType('story') | PostType('comment')),
-    created_at__lt='2018-01-01')
 ```
-
-Parameters received by `search_by_date`:
-* `q` (optional): The query string to search for
-* `author` (optional): Author's username
-* `stories` boolean: Include stories
-* `comments` boolean: Include comments
-* `ask_hn` boolean: Include Ask HN
-* `show_hn` boolean: Include Show HN
-* `tags`: Tags to apply (see [section _Tags_ below](#tags))
-* `hits_per_page` (optional, default=1000): Number of posts to return per request.
-* `**filters`: Other filters to apply (date, points, number of comments). See [section _Filters_ below](#filters).
 
 ##### Tags
 
