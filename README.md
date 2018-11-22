@@ -2,13 +2,15 @@
 
 This is a simple library to interface with [HN Search API](https://hn.algolia.com/api) (provided by Algolia).
 
-### Install instructions
+[Install](#install-instructions) | [Basic Usage](#usage) | [Development](#development) | [Roadmap](#roadmap)
+
+## Install instructions
 
 ```bash
 $ pip install python-hn
 ```
 
-### Usage
+## Usage
 
 **Check out [Interactive Docs](https://notebooks.rmotr.com/santiagobasulto/python-hn-library-interactive-docs-d49b8026) to try the library without installing it.**
 
@@ -81,8 +83,13 @@ search_by_date(tags=PostType('story'), num_comments__gt=100)
 
 _[TODO]_
 
-### Roadmap
+## Development
 
-* V0.0.3: Post type aliases
-* V0.0.2 **CURRENT**: Functioning API
+Current milestone: https://github.com/santiagobasulto/python-hacker-news/milestone/2
+
+## Roadmap
+
+* V0.0.4: Other endpoints: /search, /users, /items (**CURRENT**)
+* V0.0.3: Post type aliases, improved API
+* V0.0.2: Functioning API
 * V0.0.1: Initial Version
