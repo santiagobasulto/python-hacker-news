@@ -299,3 +299,28 @@ def test_items_endpoint_not_found():
 
     post = api.get_item('0000')
     assert post is None
+
+
+@responses.activate
+def test_users_endpoint_is_found():
+    with (REQUESTS_PATH / 'pg.json').open() as fp:
+        responses.add(
+            responses.GET, 'https://hn.algolia.com/api/v1/users/pg',
+            json=json.loads(fp.read()), status=200)
+
+    user = api.get_user('pg')
+
+    assert user['id'] == 623037
+    assert user['username'] == 'pg'
+    assert user['karma'] == 155173
+
+
+@responses.activate
+def test_users_endpoint_not_found():
+    with (REQUESTS_PATH / 'pg.json').open() as fp:
+        responses.add(
+            responses.GET, 'https://hn.algolia.com/api/v1/users/IdontExist',
+            status=404)
+
+    user = api.get_user('IdontExist')
+    assert user is None

@@ -105,3 +105,14 @@ def get_item(item_id):
         resp.raise_for_status()
 
     return resp.json()
+
+
+def get_user(item_id):
+    resp = requests.get(endpoints.USERS.format(id=item_id))
+
+    if not resp.ok:
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+
+    return resp.json()
