@@ -1,0 +1,92 @@
+{
+  "id": 18562744,
+  "created_at": "2018-11-29T18:54:44.000Z",
+  "created_at_i": 1543517684,
+  "type": "story",
+  "author": "santiagobasulto",
+  "title": "Show HN: RMOTR Notebooks \u2013 Free Online Data Science Environment",
+  "url": null,
+  "text": "<p>Hello HN. We&#x27;re happy to show to the world a platform that we&#x27;ve created to help our students get started with Data Science: <a href=\"https:&#x2F;&#x2F;notebooks.rmotr.com&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;notebooks.rmotr.com&#x2F;</a></p><p>We know how hard it is to start working with Data Science tools: setting up local environment, installing dependencies, keeping projects organized, etc. RMOTR Notebooks has Jupyter Lab already preinstalled + the ability to upload datasets.</p><p>Our platform is now open to everybody for free, and we are thinking about adding paid tiers in the future with better hardware, GPU support, pro features, etc.</p><p>We&#x27;ve also worked on a &quot;publishing view&quot; for project; so people can share their work with the world: <a href=\"https:&#x2F;&#x2F;notebooks.rmotr.com&#x2F;martinzugnoni&#x2F;how-to-trade-bitcoin-with-python-using-the-bollinger-bands-strategy-ce645116\" rel=\"nofollow\">https:&#x2F;&#x2F;notebooks.rmotr.com&#x2F;martinzugnoni&#x2F;how-to-trade-bitco...</a></p><p>Would love to hear your feedback.</p>",
+  "points": 11,
+  "parent_id": null,
+  "story_id": null,
+  "children": [
+    {
+      "id": 18563919,
+      "created_at": "2018-11-29T20:55:51.000Z",
+      "created_at_i": 1543524951,
+      "type": "comment",
+      "author": "ynotcomb",
+      "title": null,
+      "url": null,
+      "text": "<p>After using it for weeks now, I can say that this is by far the most optimal, powerful, notebook environment service on the world wide web.  I work with Google and myself and a handful of colleagues have utilized the streamlined, intuitive interface for a multitude of projects already. A direct quote from my manager of operations: &quot;This is the ultimate form of data notebook accessibility, its a book I wont soon put down&quot;.</p>",
+      "points": null,
+      "parent_id": 18562744,
+      "story_id": 18562744,
+      "children": [],
+      "options": []
+    },
+    {
+      "id": 18564832,
+      "created_at": "2018-11-29T22:41:00.000Z",
+      "created_at_i": 1543531260,
+      "type": "comment",
+      "author": "nealpatil",
+      "title": null,
+      "url": null,
+      "text": "<p>Each cell can be configured to use different libraries ?</p>",
+      "points": null,
+      "parent_id": 18562744,
+      "story_id": 18562744,
+      "children": [
+        {
+          "id": 18568804,
+          "created_at": "2018-11-30T13:15:03.000Z",
+          "created_at_i": 1543583703,
+          "type": "comment",
+          "author": "santiagobasulto",
+          "title": null,
+          "url": null,
+          "text": "<p>Different libraries: yes\nDifferent <i>languages</i>: no</p><p>You can use many already included libraries and install your own.</p>",
+          "points": null,
+          "parent_id": 18564832,
+          "story_id": 18562744,
+          "children": [],
+          "options": []
+        }
+      ],
+      "options": []
+    },
+    {
+      "id": 18562788,
+      "created_at": "2018-11-29T18:58:48.000Z",
+      "created_at_i": 1543517928,
+      "type": "comment",
+      "author": "becca_smth81",
+      "title": null,
+      "url": null,
+      "text": "<p>This is a nice concept, but how does it differ from something like Azure or Google Colab? Are you guys really going to compete against Microsoft or Google?</p>",
+      "points": null,
+      "parent_id": 18562744,
+      "story_id": 18562744,
+      "children": [],
+      "options": []
+    },
+    {
+      "id": 18579192,
+      "created_at": "2018-12-01T21:54:13.000Z",
+      "created_at_i": 1543701253,
+      "type": "comment",
+      "author": "russdpale",
+      "title": null,
+      "url": null,
+      "text": "<p>This looks amazing. I am going to show this to a few colleagues. Thanks for your hard work!</p>",
+      "points": null,
+      "parent_id": 18562744,
+      "story_id": 18562744,
+      "children": [],
+      "options": []
+    }
+  ],
+  "options": []
+}
