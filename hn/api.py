@@ -94,3 +94,25 @@ def search_by_date(q=None, author=None, story_id=None, stories=None,
             parser = parser.replace(created_at__lt=hit['created_at'])
 
         params['numericFilters'] = str(parser)
+
+
+def get_item(item_id):
+    resp = requests.get(endpoints.ITEMS.format(id=item_id))
+
+    if not resp.ok:
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+
+    return resp.json()
+
+
+def get_user(item_id):
+    resp = requests.get(endpoints.USERS.format(id=item_id))
+
+    if not resp.ok:
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+
+    return resp.json()

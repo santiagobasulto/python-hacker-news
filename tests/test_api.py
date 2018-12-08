@@ -275,27 +275,52 @@ def test_search_by_date_with_query_created_and_points():
     post = next(res)
     assert post['story_id'] == 18457200
 
-#
-# @responses.activate
-# def test_2_search_by_date_with_query_default_params():
-#     with (REQUESTS_PATH / '1.1.json').open() as fp:
-#         responses.add(
-#             responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=2',
-#             json=json.loads(fp.read()), status=200)
-#     with (REQUESTS_PATH / '1.2.json').open() as fp:
-#         responses.add(
-#             responses.GET, 'https://hn.algolia.com/api/v1/search_by_date?hitsPerPage=2&numericFilters=created_at_i<1542316220',
-#             json=json.loads(fp.read()), status=200)
-#
-#     res = search_by_date('rmotr', hits_per_page=2)
-#     post = next(res)
-#     assert post['story_id'] == 18445714
-#
-#     post = next(res)
-#     assert post['story_id'] == 18462671
-#
-#     post = next(res)
-#     assert post['story_id'] == 18460087
-#
-#     post = next(res)
-#     assert post['story_id'] == 18457200
+
+@responses.activate
+def test_items_endpoint_is_found():
+    with (REQUESTS_PATH / 'item.json').open() as fp:
+        responses.add(
+            responses.GET, 'https://hn.algolia.com/api/v1/items/18562744',
+            json=json.loads(fp.read()), status=200)
+
+    post = api.get_item(18562744)
+
+    assert post['id'] == 18562744
+    assert post['author'] == 'santiagobasulto'
+    assert len(post['children']) == 4
+
+
+@responses.activate
+def test_items_endpoint_not_found():
+    with (REQUESTS_PATH / 'item.json').open() as fp:
+        responses.add(
+            responses.GET, 'https://hn.algolia.com/api/v1/items/0000',
+            status=404)
+
+    post = api.get_item('0000')
+    assert post is None
+
+
+@responses.activate
+def test_users_endpoint_is_found():
+    with (REQUESTS_PATH / 'pg.json').open() as fp:
+        responses.add(
+            responses.GET, 'https://hn.algolia.com/api/v1/users/pg',
+            json=json.loads(fp.read()), status=200)
+
+    user = api.get_user('pg')
+
+    assert user['id'] == 623037
+    assert user['username'] == 'pg'
+    assert user['karma'] == 155173
+
+
+@responses.activate
+def test_users_endpoint_not_found():
+    with (REQUESTS_PATH / 'pg.json').open() as fp:
+        responses.add(
+            responses.GET, 'https://hn.algolia.com/api/v1/users/IdontExist',
+            status=404)
+
+    user = api.get_user('IdontExist')
+    assert user is None
