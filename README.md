@@ -4,6 +4,10 @@ This is a simple library to interface with [HN Search API](https://hn.algolia.co
 
 [Install](#install-instructions) | [Basic Usage](#usage) | [Development](#development) | [Roadmap](#roadmap)
 
+<p align="right"></p>
+
+> 👉 Note: I used this library to download ALL Hacker News posts and made it available as a [public dataset in Kaggle](https://www.kaggle.com/santiagobasulto/all-hacker-news-posts-stories-askshow-hn-polls).
+
 ## Install instructions
 
 ```bash
@@ -14,11 +18,11 @@ $ pip install python-hn
 
 Get hands on `python-hn` in this interactive demo online:
 
-[![](https://cdn-images-1.medium.com/max/1600/1*cI91DR6og9iF06hBrHKINg.png)](http://notebooks.rmotr.com/demo/gh/santiagobasulto/python-hacker-news)
+[![](https://cdn-images-1.medium.com/max/1600/1*cI91DR6og9iF06hBrHKINg.png)](http://notebooks.ai/demo/gh/santiagobasulto/python-hacker-news)
 
 ## Usage
 
-**Check out [Interactive Docs](https://notebooks.rmotr.com/santiagobasulto/python-hn-library-interactive-docs-d49b8026) to try the library without installing it.**
+**Check out [Interactive Docs](https://notebooks.ai/santiagobasulto/python-hn-library-interactive-docs-d49b8026) to try the library without installing it.**
 
 ```python
 from hn import search_by_date
