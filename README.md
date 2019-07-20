@@ -6,7 +6,7 @@ This is a simple library to interface with [HN Search API](https://hn.algolia.co
 
 <p align="right"></p>
 
-> 👉 Note: I used this library to download ALL Hacker News posts and made it available as a [public dataset in Kaggle](https://www.kaggle.com/santiagobasulto/all-hacker-news-posts-stories-askshow-hn-polls).
+> 👉 Note: As an example, I used this library to download ALL Hacker News posts and made it available as a [public dataset in Kaggle](https://www.kaggle.com/santiagobasulto/all-hacker-news-posts-stories-askshow-hn-polls).
 
 ## Install instructions
 
@@ -29,7 +29,6 @@ from hn import search_by_date
 
 # Search everything (stories, comments, etc) containing the keyword 'python'
 search_by_date('python')
-
 
 # Search everything (stories, comments, etc) from author 'pg' and keyword 'lisp'
 search_by_date('lisp', author='pg', created_at__lt='2018-01-01')
