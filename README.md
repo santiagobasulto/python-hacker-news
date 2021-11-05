@@ -14,12 +14,6 @@ This is a simple library to interface with [HN Search API](https://hn.algolia.co
 $ pip install python-hn
 ```
 
-## Demo
-
-Get hands on `python-hn` in this interactive demo online:
-
-[![](https://cdn-images-1.medium.com/max/1600/1*cI91DR6og9iF06hBrHKINg.png)](http://notebooks.ai/demo/gh/santiagobasulto/python-hacker-news)
-
 ## Usage
 
 **Check out [Interactive Docs](https://notebooks.ai/santiagobasulto/python-hn-library-interactive-docs-d49b8026) to try the library without installing it.**
