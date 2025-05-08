@@ -182,6 +182,11 @@ def test_create_at_filter_parsing():
     ) == CreatedAtFilter(
         datetime(2018, 11, 3, 14, 53, 42), models.EQUALS_OPERATOR
     )
+    assert CreatedAtFilter.parse(
+        'created_at', '2025-05-07T09:21:44Z'
+    ) == CreatedAtFilter(
+        datetime(2025, 5, 7, 9, 21, 44), models.EQUALS_OPERATOR
+    )
 
     assert CreatedAtFilter.parse(
         'created_at', '2018'

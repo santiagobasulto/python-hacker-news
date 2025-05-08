@@ -1,0 +1,15 @@
+[project]
+name = "python-hn"
+version = "0.0.4"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.09"
+dependencies = [
+    "requests>=2.20",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "responses>=0.25",
+]

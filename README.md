@@ -16,8 +16,6 @@ $ pip install python-hn
 
 ## Usage
 
-**Check out [Interactive Docs](https://notebooks.ai/santiagobasulto/python-hn-library-interactive-docs-d49b8026) to try the library without installing it.**
-
 ```python
 from hn import search_by_date
 
@@ -88,11 +86,8 @@ _[TODO]_
 
 ## Development
 
-Current milestone: https://github.com/santiagobasulto/python-hacker-news/milestone/2
+I'm in the process of updating this project and migrating to `uv`. You should be able to just do:
 
-## Roadmap
-
-* V0.0.4: Other endpoints: /search, /users, /items (**CURRENT**)
-* V0.0.3: Post type aliases, improved API
-* V0.0.2: Functioning API
-* V0.0.1: Initial Version
+```bash
+$ uv run py.test
+```

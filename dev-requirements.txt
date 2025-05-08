@@ -1,4 +1,0 @@
--r requirements.txt
-
-pytest==3.10.0
-responses==0.10.4

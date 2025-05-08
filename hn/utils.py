@@ -5,6 +5,7 @@ AVAILABLE_DATE_FORMATS = [
     '%Y-%m',
     '%Y-%m-%d',
     '%Y-%m-%d %H:%M:%S',
+    "%Y-%m-%dT%H:%M:%SZ",
     "%Y-%m-%dT%H:%M:%S.%fZ"
 ]
 
